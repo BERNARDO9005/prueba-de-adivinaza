@@ -25,13 +25,24 @@ class HighScoremanager:
         with open(self._filename, 'w') as f:
             json.dump(scores, f, indent=4)
     
-    def add_score(self, player_name, score xtra=None):
+    def add_score(self, player_name, score, extra=None):
         scores = self.load_scores()
         entry = {
             "player":player_name,
-            "score": scores,
+            "score": score,
             "date": extra or datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         }
         scores.append(entry)
         self.save_scores(scores)
+    
+    def get_top_scores(self, ascending=True, limit=10):
+        scores = self.load_scores()
+        if ascending:
+            scores.sort(key=lambda x: x['score'])
+        else:
+            scores,sort(key=lambda x: x['score'], reverse=true)
+            return scores[:limit]
+        
+
+
 
