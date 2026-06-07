@@ -22,3 +22,16 @@ class HighScoremanager:
             return []
     
     def save_scores(self, scores):
+        with open(self._filename, 'w') as f:
+            json.dump(scores, f, indent=4)
+    
+    def add_score(self, player_name, score xtra=None):
+        scores = self.load_scores()
+        entry = {
+            "player":player_name,
+            "score": scores,
+            "date": extra or datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        }
+        scores.append(entry)
+        self.save_scores(scores)
+
